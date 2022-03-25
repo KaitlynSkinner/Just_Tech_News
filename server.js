@@ -17,4 +17,4 @@ sequelize.sync({ force: false }). then(() => {
 });
 
 // Note:
-// The router instance in routes/index.js collected everything for us and packaged them up for server.js to use.
+// The router instance in routes/index.js collected everything and packaged it up for server.js to use.
