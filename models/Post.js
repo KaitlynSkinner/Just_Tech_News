@@ -6,7 +6,7 @@ class Post extends Model {
     // almost the exact same code implemented into the PUT route earlier? The only real difference here is that we're using models.Vote instead, and we'll pass the Vote model in as an argument from post-routes.js.
     static upvote(body, models) {
         return models.Vote.create({
-            user_id: body._user.id,
+            user_id: body.user_id,
             post_id: body.post_id
         }).then(() => {
             return Post.findOne({
