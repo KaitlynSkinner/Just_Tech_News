@@ -22,3 +22,24 @@ const sequelize = new Sequelize(
 );
 
 module.exports = sequelize;
+
+
+// USER
+// {
+// 	"username": "Kaitlyn",
+// 	"email": "kaitlyneskinner@gmail.com",
+// 	"password": "password1234"
+// }
+
+// POST
+// {
+// 	"title": "Why it's great to write blog posts",
+// 	"post_url": "https://taskmaster.com/blog-posts",
+// 	"user_id": 1
+// }
+
+// POSTS/UPVOTE
+// {
+// 	"user_id": 1,
+// 	"post_id": 1
+// }
