@@ -1,17 +1,21 @@
 const User = require('./User');
 const Post = require('./Post');
 const Vote = require('./Vote');
+const Comment = require('./Comment');
 
 // create associations
+// USER.JS
 User.hasMany(Post, {
     foreignKey: 'user_id'
 });
 
 // reverse association
+// POST.JS
 Post.belongsTo(User, {
     foreignKey: 'user_id'
 });
 
+// VOTE.JS
 Vote.belongsTo(User, {
   foreignKey: 'user_id'
 });
@@ -37,6 +41,23 @@ User.hasMany(Vote, {
 });
 
 Post.hasMany(Vote, {
+  foreignKey: 'post_id'
+});
+
+// COMMENT.JS
+Comment.belongsTo(User, {
+  foreignKey: 'user_id'
+});
+
+Comment.belongsTo(Post, {
+  foreignKey: 'post_id'
+});
+
+User.hasMany(Comment, {
+  foreignKey: 'user_id'
+});
+
+Post.hasMany(Comment, {
   foreignKey: 'post_id'
 });
 

@@ -23,7 +23,7 @@ const sequelize = new Sequelize(
 
 module.exports = sequelize;
 
-
+// ** MOCK DATA **
 // USER
 // {
 // 	"username": "Kaitlyn",
@@ -42,4 +42,11 @@ module.exports = sequelize;
 // {
 // 	"user_id": 1,
 // 	"post_id": 1
+// }
+
+// COMMENTS 
+// {
+// 	"comment_text": "This article is awesome!",
+// 	"user_id": 3,
+// 	"post_id": 4
 // }
