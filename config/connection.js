@@ -47,6 +47,6 @@ module.exports = sequelize;
 // COMMENTS 
 // {
 // 	"comment_text": "This article is awesome!",
-// 	"user_id": 3,
-// 	"post_id": 4
+// 	"user_id": 1,
+// 	"post_id": 2
 // }
