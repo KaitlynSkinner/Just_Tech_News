@@ -1,7 +1,8 @@
 const router = require('express').Router();
 const sequelize = require('../config/connection');
-const { Post, User, Comment } = require('../models');
+const { Post, User, Comment, Vote } = require('../models');
 
+// GET all posts for homepage - http://localhost:3001/
 router.get('/', (req, res) => {
     Post.findAll({
         attributes: [
@@ -48,6 +49,11 @@ router.get('/', (req, res) => {
     //         username: 'test_user'
     //     }
     // });
+});
+
+// http://localhost:3001/login
+router.get('/login', (req, res) => {
+    res.render('login');
 });
 
 module.exports = router;
