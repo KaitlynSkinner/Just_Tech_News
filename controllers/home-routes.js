@@ -1,9 +1,12 @@
 const router = require('express').Router();
+const res = require('express/lib/response');
 const sequelize = require('../config/connection');
 const { Post, User, Comment, Vote } = require('../models');
 
 // GET all posts for homepage - http://localhost:3001/
 router.get('/', (req, res) => {
+    console.log(req.session);
+
     Post.findAll({
         attributes: [
             'id',
@@ -53,7 +56,23 @@ router.get('/', (req, res) => {
 
 // http://localhost:3001/login
 router.get('/login', (req, res) => {
+    if (req.session.loggedIn) {
+        res.redirect('/');
+        return;
+    }
+
     res.render('login');
+});
+
+// http://localhost:3001/logout
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
 });
 
 module.exports = router;

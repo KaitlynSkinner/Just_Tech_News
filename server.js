@@ -1,19 +1,36 @@
-// to access stylesheet
+// to interact with filepath - stylesheets/style.css
 const path = require('path');
 // require Express.js
 const express = require('express');
-// require handlebars.js
+// require Express.js session
+const session = require('express-session');
+// require ExpressHandlebars - handlebars.js
 const exphbs = require('express-handlebars');
 
-// require Express.js
+// creates new express application
 const app = express();
-// require port, also allows for Heroku port to work
+// 'production mode' - db connection to server, also allows for connection to Heroku port
 const PORT = process.env.PORT || 3001;
 
-// require sequlize
+// connect to database
 const sequelize = require('./config/connection');
+// connect the session to Sequelize database
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-// require handlebars.js
+const sess = {
+    secret: 'Super secret secret',
+    // {} would be where you could set additional options on the cookie, like maximum age
+    cookie: {},
+    resave: false,
+    saveUninitialized: true,
+    store: new SequelizeStore({
+        db: sequelize
+    })
+};
+
+app.use(session(sess));
+
+// creates instance(s) of ExpressHandlebars - allowing full access to API
 const hbs = exphbs.create({});
 
 // // require files - routes folder(now controllers folder), all files 
@@ -21,7 +38,7 @@ const hbs = exphbs.create({});
 // turn on routes
 // app.use(routes);
 
-// handlebars.js middleware
+// Register `hbs.engine` with the Express app.
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
