@@ -17,7 +17,6 @@ const postdata = [
         "title": "Just Tech News goes public!",
 		"post_url": "https://taskmaster.com/press",
         "user_id": 3
-
 	}
 ];
 

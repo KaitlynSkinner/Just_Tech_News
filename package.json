@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "description": "## Description A tech news website where users can post, upvote, and comment on links to news articles.",
   "main": "server.js",
-  "start": "node server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "seed": "node seeds/index.js"
   },
   "repository": {
     "type": "git",
