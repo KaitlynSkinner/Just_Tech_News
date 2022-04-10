@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const { User, Post, Vote, Comment } = require('../../models');
 
-// GET /api/users
+// GET all users
 router.get('/', (req, res) => {
     // Access our User model and run .findAll() method)
     User.findAll({
@@ -110,7 +110,13 @@ router.post('/login', (req, res) => {
 
 // POST /api/logout
 router.post('/logout', (req, res) => {
-
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    } else {
+        res.status(404).end();
+    }
 });
 
 // PUT /api/users/1
