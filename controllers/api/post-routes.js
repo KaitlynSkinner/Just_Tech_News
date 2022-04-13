@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const sequelize = require('../../config/connection');
 const { Post, User, Vote, Comment } = require('../../models');
+const withAuth = require('../../utils/auth');
 
 // GET all users
 router.get('/', (req, res) => {
@@ -80,7 +81,7 @@ router.get('/:id', (req, res) => {
 });
 
 // POST /api/post
-router.post('/', (req, res) => {
+router.post('/', withAuth, (req, res) => {
     // expects {title: 'Taskmaster goes public!', post_url: 'https://taskmaster.com/press', user_id: 1}
     if (req.session) {
         Post.create({
@@ -98,7 +99,7 @@ router.post('/', (req, res) => {
 
 // PUT /api/posts/upvote
 // before router.put('/:id',..) or Exress.js will think the word 'upvote' is a valid parameter for /:id
-router.put('/upvote', (req, res) => {
+router.put('/upvote', withAuth, (req, res) => {
    // custom static method created in models/Post.js
    if (req.session) {
        // pass session id along with all destructured properties on req.body
@@ -112,7 +113,7 @@ router.put('/upvote', (req, res) => {
 });
 
 // PUT /api/post/1
-router.put('/:id', (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Post.update(
         {
             title: req.body.title,
@@ -137,7 +138,7 @@ router.put('/:id', (req, res) => {
 });
 
 // DELETE /api/posts/1
-router.delete('/:id', (req, res) => {
+router.delete('/:id', withAuth, (req, res) => {
     console.log('id', req.params.id);
     Post.destroy({
         where: {

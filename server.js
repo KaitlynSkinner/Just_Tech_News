@@ -6,6 +6,8 @@ const express = require('express');
 const session = require('express-session');
 // require ExpressHandlebars - handlebars.js
 const exphbs = require('express-handlebars');
+// require helpers file
+const helpers = require('./utils/helpers');
 
 // creates new express application
 const app = express();
@@ -31,7 +33,7 @@ const sess = {
 app.use(session(sess));
 
 // creates instance(s) of ExpressHandlebars - allowing full access to API
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
 
 // // require files - routes folder(now controllers folder), all files 
 // const routes = require('./controllers');
